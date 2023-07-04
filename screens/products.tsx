@@ -3,6 +3,7 @@ import styles from "../config/styling";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import back from '../assets/back.jpg'
+import SMIcon from "../config/components/SMIcon";
 
 export default function Products({ navigation }) {
     const [list, setList] = useState([])
@@ -20,6 +21,13 @@ export default function Products({ navigation }) {
     }
 
     useEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                    <SMIcon name='person' />
+                </TouchableOpacity>
+            ),
+        });
         const unsubscribe = navigation.addListener('focus', () => {
             // Screen was focused
             getProducts()
